@@ -5,7 +5,9 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
 	protected $tables = [
-		'products'
+		'products',
+        'bugs',
+        'users'
 	];
 
     /**
@@ -15,8 +17,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-    	$this->fullTruncate();
-       $this->call(ProductTableSeeder::class);
+        $this->fullTruncate();
+        $this->call(ProductTableSeeder::class);
+        $this->call(BugTableSeeder::class);
+        $this->call(UserTableSeeder::class);
     }
 
     protected function fullTruncate()
