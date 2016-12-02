@@ -22,6 +22,21 @@ class BugTest extends DBTestCase
     /**
      * @test
      */
+    public function set_and_retrieve_object_through_repository()
+    {
+        $description = "There is something wrong.";
+
+        $this->persistNewBug($description);
+
+        $dbBug = $this->entityManager->getRepository(Bug::class)->find(1);
+
+        $this->assertEquals($description, $dbBug->getDescription());
+        $this->assertEquals("open", $dbBug->getStatus());
+    }
+
+    /**
+     * @test
+     */
     public function set_and_change_object_in_db()
     {
         $description = "There is something wrong.";

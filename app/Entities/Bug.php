@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
 use Doctrine\ORM\Mapping as Doctrine;
 
 /**
@@ -30,6 +31,13 @@ class Bug
 	 * @Doctrine\Column(type="boolean")
 	 */
 	protected $status = 0;
+
+	protected $products = null;
+
+	public function __construct()
+	{
+		$this->products = new ArrayCollection();
+	}
 
 	public function getId()
 	{

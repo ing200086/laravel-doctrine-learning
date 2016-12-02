@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
 use Doctrine\ORM\Mapping as Doctrine;
 
 /**
@@ -21,6 +22,15 @@ class User
 	 * @Doctrine\Column(type="string")
 	 */
 	protected $name = null;
+
+	protected $reportedBugs = null;
+	protected $assignedBugs = null;
+
+	public function __construct()
+	{
+		$this->reportedBugs = new ArrayCollection();
+		$this->assignedBugs = new ArrayCollection();
+	}
 
 	public function getId()
 	{
