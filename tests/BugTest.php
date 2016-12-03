@@ -53,6 +53,38 @@ class BugTest extends DBTestCase
         $this->assertEquals("closed", $dbBug->getStatus());
     }
 
+    /**
+     * @test
+     */
+    public function create_bug_and_set_user_as_reporter()
+    {
+        $reporter = new \App\Entities\User();
+        $reporter->setName("John Doe");
+
+        $bug = $this->persistNewBug("SomethingHappened");
+        $bug->setReporter($reporter);
+
+        $this->entityManager->persist($reporter);
+        $this->entityManager->persist($bug);
+        $this->entityManager->flush();
+    }
+
+    /**
+     * @test
+     */
+    public function create_bug_and_set_user_as_engineer()
+    {
+        $engineer = new \App\Entities\User();
+        $engineer->setName("Engineering Jim");
+
+        $bug = $this->persistNewBug("SomethingHappened");
+        $bug->setEngineer($engineer);
+
+        $this->entityManager->persist($engineer);
+        $this->entityManager->persist($bug);
+        $this->entityManager->flush();
+    }
+
     protected function persistNewBug($description)
     {
         $Bug = new Bug();
@@ -60,5 +92,7 @@ class BugTest extends DBTestCase
 
         $this->entityManager->persist($Bug);
         $this->entityManager->flush();
+
+        return $Bug;
     }
 }

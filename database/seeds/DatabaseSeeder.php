@@ -18,9 +18,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->fullTruncate();
+        $this->call(UserTableSeeder::class);
         $this->call(ProductTableSeeder::class);
         $this->call(BugTableSeeder::class);
-        $this->call(UserTableSeeder::class);
     }
 
     protected function fullTruncate()

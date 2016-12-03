@@ -20,14 +20,14 @@ $factory->define(\App\Entities\Product::class, function (Faker\Generator $faker)
 	];
 });
 
-$factory->define(\App\Entities\Bug::class, function (Faker\Generator $faker) {
-	return [
-		'description' => $faker->sentence
-	];
-});
-
 $factory->define(\App\Entities\User::class, function (Faker\Generator $faker) {
 	return [
 		'name' => $faker->name
+	];
+});
+
+$factory->define(\App\Entities\Bug::class, function (Faker\Generator $faker) {
+	return [
+		'description' => $faker->sentence
 	];
 });

@@ -5,6 +5,8 @@ namespace App\Entities;
 use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
 use Doctrine\ORM\Mapping as Doctrine;
 
+use \App\Entities\User;
+
 /**
 * Bug class to describe the issues with a product or service and disposition
 * @Doctrine\Entity
@@ -32,6 +34,22 @@ class Bug
 	 */
 	protected $status = 0;
 
+	/**
+	 * The engineer tasked with fixing the bug
+	 * @Doctrine\ManyToOne(targetEntity="User", inversedBy="assignedBugs")
+	 */
+	protected $engineer = null;
+
+	/**
+	 * The user that reported the bug.
+	 * @Doctrine\ManyToOne(targetEntity="User", inversedBy="reportedBugs")
+	 */
+	protected $reporter = null;
+
+	/**
+	 * Products that the bug is associate with.
+	 * @Doctrine\ManyToMany(targetEntity="Product")
+	 */
 	protected $products = null;
 
 	public function __construct()
@@ -54,6 +72,16 @@ class Bug
 		return $this->status ? "closed" : "open";
 	}
 
+	public function getEngineer()
+	{
+		return $this->engineer;
+	}
+
+	public function getReporter()
+	{
+		return $this->reporter;
+	}
+
 	public function setDescription($description)
 	{
 		$this->description = $description;
@@ -62,5 +90,17 @@ class Bug
 	public function closeBug()
 	{
 		$this->status = 1;
+	}
+
+	public function setEngineer(User $engineer)
+	{
+		$engineer->assignedToBug($this);
+		$this->engineer = $engineer;
+	}
+
+	public function setReporter(User $reporter)
+	{
+		$reporter->reporterOfBug($this);
+		$this->reporter = $reporter;
 	}
 }
