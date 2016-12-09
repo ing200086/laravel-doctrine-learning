@@ -21,6 +21,20 @@ class UserTest extends DBTestCase
     /**
      * @test
      */
+    public function retrieve_object_from_db()
+    {
+        $this->seedDb();
+
+        $dbUser = $this->entityManager->find(User::class, 1);
+        dd($dbUser);
+
+        $this->assertEquals($description, $dbBug->getDescription());
+        $this->assertEquals("open", $dbBug->getStatus());
+    }
+
+    /**
+     * @test
+     */
     public function set_and_change_object_in_db()
     {
         $name = "John Doe";

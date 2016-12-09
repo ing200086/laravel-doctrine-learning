@@ -17,7 +17,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->fullTruncate();
+        if (App::environment() <> "testing") {
+            $this->fullTruncate();
+        }
         $this->call(UserTableSeeder::class);
         $this->call(ProductTableSeeder::class);
         $this->call(BugTableSeeder::class);

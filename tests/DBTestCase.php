@@ -11,7 +11,7 @@ class DBTestCase extends TestCase
     public function setUp() {
     	parent::setUp();
 
-    	Artisan::call('doctrine:schema:create');
+        Artisan::call('doctrine:schema:create');
         $this->entityManager = app('Doctrine\ORM\EntityManagerInterface');
     }
 

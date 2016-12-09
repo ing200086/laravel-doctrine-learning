@@ -26,8 +26,12 @@ $factory->define(\App\Entities\User::class, function (Faker\Generator $faker) {
 	];
 });
 
-$factory->define(\App\Entities\Bug::class, function (Faker\Generator $faker) {
+$factory->define(\App\Entities\Bug::class, function (Faker\Generator $faker, array $attributes) {
+	$users = $attributes['users'];
+
 	return [
-		'description' => $faker->sentence
+		'description' => $faker->sentence,
+		'reporter' => $faker->randomElement($users),
+		'engineer' => $faker->randomElement($users)
 	];
 });

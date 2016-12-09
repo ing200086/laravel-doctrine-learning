@@ -19,6 +19,7 @@ class BugTest extends DBTestCase
         $this->assertEquals("open", $dbBug->getStatus());
     }
 
+
     /**
      * @test
      */
