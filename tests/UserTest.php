@@ -9,52 +9,51 @@ class UserTest extends DBTestCase
      */
     public function set_and_retrieve_object()
     {
-        $name = "John Doe";
-
-        $this->persistNewUser($name);
-
-        $dbUser = $this->entityManager->find(User::class, 1);
-
-        $this->assertEquals($name, $dbUser->getName());
-    }
-
-    /**
-     * @test
-     */
-    public function retrieve_object_from_db()
-    {
         $this->seedDb();
 
         $dbUser = $this->entityManager->find(User::class, 1);
-        dd($dbUser);
 
-        $this->assertEquals($description, $dbBug->getDescription());
-        $this->assertEquals("open", $dbBug->getStatus());
+        $this->assertEquals("George Orwell", $dbUser->getName());
+
+        $dbBug = $dbUser->getBugs();
+
+        $bugs = "";
+
+        foreach($dbBug as $bug)
+        {
+            $bugs = $bugs . "----" . $bug->getDescription();
+        }
+
+        // dd($bugs);
     }
 
     /**
      * @test
      */
-    public function set_and_change_object_in_db()
+    public function no_entity_manager_testing_of_object()
     {
-        $name = "John Doe";
-        $newName = "Joe Black";
+        $this->seed_the_dan();
 
-        $this->persistNewUser($name);
-
-        $dbUser = $this->entityManager->find(User::class, 1);
-
-        $dbUser->setName($newName);
-
-        $this->assertEquals($newName, $dbUser->getName());
+        $dbBugs = $this->entityManager->find(User::class, 1)->getBugs();
+        dd($dbBugs[0]->getReporter());
     }
 
-    protected function persistNewUser($name)
+    protected function seed_the_dan()
     {
-        $User = new User();
-        $User->setName($name);
+        $user = new User();
+        $user->setName("Dan");
 
-        $this->entityManager->persist($User);
+        $bug = new \App\Entities\Bug();
+        $bug->setDescription("Damn Ants.");
+        $bug->setReporter($user)->setEngineer($user);
+
+
+        $this->entityManager->persist($user);
+        $this->entityManager->persist($bug);
+
         $this->entityManager->flush();
     }
+
+
+
 }

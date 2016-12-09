@@ -13,8 +13,12 @@ class BugTableSeeder extends Seeder
     {
         $entityManager = app('Doctrine\ORM\EntityManagerInterface');
     	$users = $entityManager->getRepository(\App\Entities\User::class)->findAll();
-
-        $bugs = entity(\App\Entities\Bug::class, 10)->create([
-            'users' => $users]);
+        entity(\App\Entities\Bug::class, 1)->create([
+                'users' => [$users[0]],
+                'description' => "Time has stopped!"
+            ]);
+        entity(\App\Entities\Bug::class, 10)->create([
+                'users' => $users
+            ]);
     }
 }

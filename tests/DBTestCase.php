@@ -11,7 +11,9 @@ class DBTestCase extends TestCase
     public function setUp() {
     	parent::setUp();
 
-        Artisan::call('doctrine:schema:create');
+        if (config("database.default") == "mem_sqlite") {
+            Artisan::call('doctrine:schema:create');
+        }
         $this->entityManager = app('Doctrine\ORM\EntityManagerInterface');
     }
 

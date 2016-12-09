@@ -11,6 +11,10 @@ class ProductTableSeeder extends Seeder
      */
     public function run()
     {
+    	entity(\App\Entities\Product::class, 1)->create([
+    		'name' => 'The Book of Time'
+    		]);
+    	
         entity(\App\Entities\Product::class, 10)->create();
     }
 }

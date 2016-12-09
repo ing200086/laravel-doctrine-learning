@@ -5,8 +5,6 @@ namespace App\Entities;
 use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
 use Doctrine\ORM\Mapping as Doctrine;
 
-use \App\Entities\Bug;
-
 /**
  * @Doctrine\Entity
  * @Doctrine\Table(name="users")
@@ -26,12 +24,12 @@ class User
 	protected $name = null;
 
 	/**
-	 * @Doctrine\OneToMany(targetEntity="Bug", mappedBy="engineer")
+	 * @Doctrine\OneToMany(targetEntity="\App\Entities\Bug", mappedBy="engineer")
 	 */
 	protected $assignedBugs = null;
 
 	/**
-	 * @Doctrine\OneToMany(targetEntity="Bug", mappedBy="reporter")
+	 * @Doctrine\OneToMany(targetEntity="\App\Entities\Bug", mappedBy="reporter")
 	 */
 	protected $reportedBugs = null;
 
@@ -64,5 +62,10 @@ class User
 	public function assignedToBug(Bug $bug)
 	{
 		$this->assignedBugs[] = $bug;
+	}
+
+	public function getBugs()
+	{
+		return $this->reportedBugs;
 	}
 }

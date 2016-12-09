@@ -9,13 +9,11 @@ class ProductTest extends DBTestCase
      */
     public function set_and_retrieve_object()
     {
-        $name = "Widget";
-
-        $this->persistNewProduct($name);
+        $this->seedDb();
 
         $dbProduct = $this->entityManager->find(Product::class, 1);
 
-        $this->assertEquals($name, $dbProduct->getName());
+        $this->assertEquals("The Book of Time", $dbProduct->getName());
     }
 
     /**
@@ -24,23 +22,12 @@ class ProductTest extends DBTestCase
     public function set_and_change_object_in_db()
     {
         $name = "Widget";
-        $newName = "Dongle";
-
-        $this->persistNewProduct($name);
+        $this->seedDb();
 
         $dbProduct = $this->entityManager->find(Product::class, 1);
 
-        $dbProduct->setName($newName);
+        $dbProduct->setName($name);
 
-        $this->assertEquals($newName, $dbProduct->getName());
-    }
-
-    protected function persistNewProduct($name)
-    {
-        $product = new Product();
-        $product->setName($name);
-
-        $this->entityManager->persist($product);
-        $this->entityManager->flush();
+        $this->assertEquals($name, $dbProduct->getName());
     }
 }

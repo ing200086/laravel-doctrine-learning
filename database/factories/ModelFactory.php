@@ -12,7 +12,7 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(\App\Entities\Product::class, function (Faker\Generator $faker) {
+$factory->define(\App\Entities\Product::class, function (Faker\Generator $faker, array $attributes) {
 	static $count = 0;
 
 	return [
@@ -20,7 +20,7 @@ $factory->define(\App\Entities\Product::class, function (Faker\Generator $faker)
 	];
 });
 
-$factory->define(\App\Entities\User::class, function (Faker\Generator $faker) {
+$factory->define(\App\Entities\User::class, function (Faker\Generator $faker, array $attributes) {
 	return [
 		'name' => $faker->name
 	];
@@ -28,7 +28,7 @@ $factory->define(\App\Entities\User::class, function (Faker\Generator $faker) {
 
 $factory->define(\App\Entities\Bug::class, function (Faker\Generator $faker, array $attributes) {
 	$users = $attributes['users'];
-
+	
 	return [
 		'description' => $faker->sentence,
 		'reporter' => $faker->randomElement($users),

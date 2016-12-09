@@ -17,9 +17,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        if (App::environment() <> "testing") {
-            $this->fullTruncate();
-        }
+        $this->fullTruncate();
+        
         $this->call(UserTableSeeder::class);
         $this->call(ProductTableSeeder::class);
         $this->call(BugTableSeeder::class);
@@ -27,10 +26,12 @@ class DatabaseSeeder extends Seeder
 
     protected function fullTruncate()
     {
-    	DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        if (config("database.default") == "mysql") { DB::statement('SET FOREIGN_KEY_CHECKS=0'); }
+
         foreach ($this->tables as $table) {
             DB::table($table)->truncate();
         }
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+
+        if (config("database.default") == "mysql") { DB::statement('SET FOREIGN_KEY_CHECKS=1'); }
     }
 }
