@@ -17,21 +17,28 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->fullTruncate();
+        $this->fullTruncate($this->getDBDriver());
         
         $this->call(UserTableSeeder::class);
         $this->call(ProductTableSeeder::class);
         $this->call(BugTableSeeder::class);
     }
 
-    protected function fullTruncate()
+    protected function fullTruncate($dbDriver)
     {
-        if (config("database.default") == "mysql") { DB::statement('SET FOREIGN_KEY_CHECKS=0'); }
+        if ($dbDriver == 'mysql') { 
+            DB::statement('SET FOREIGN_KEY_CHECKS=0');
 
-        foreach ($this->tables as $table) {
-            DB::table($table)->truncate();
+            foreach ($this->tables as $table) {
+                DB::table($table)->truncate();
+            }
+
+            DB::statement('SET FOREIGN_KEY_CHECKS=1');
         }
+    }
 
-        if (config("database.default") == "mysql") { DB::statement('SET FOREIGN_KEY_CHECKS=1'); }
+    protected function getDBDriver()
+    {
+        return config('database.connections.' . config('database.default') . '.driver');
     }
 }

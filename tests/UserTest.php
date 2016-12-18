@@ -16,15 +16,6 @@ class UserTest extends DBTestCase
         $this->assertEquals("George Orwell", $dbUser->getName());
 
         $dbBug = $dbUser->getBugs();
-
-        $bugs = "";
-
-        foreach($dbBug as $bug)
-        {
-            $bugs = $bugs . "----" . $bug->getDescription();
-        }
-
-        // dd($bugs);
     }
 
     /**
@@ -35,7 +26,6 @@ class UserTest extends DBTestCase
         $this->seed_the_dan();
 
         $dbBugs = $this->entityManager->find(User::class, 1)->getBugs();
-        dd($dbBugs[0]->getReporter());
     }
 
     protected function seed_the_dan()
