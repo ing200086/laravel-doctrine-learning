@@ -9,7 +9,7 @@ class BugTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run($times = 10)
     {
         $entityManager = app('Doctrine\ORM\EntityManagerInterface');
     	$users = $entityManager->getRepository(\App\Entities\User::class)->findAll();
@@ -17,7 +17,7 @@ class BugTableSeeder extends Seeder
                 'users' => [$users[0]],
                 'description' => "Time has stopped!"
             ]);
-        entity(\App\Entities\Bug::class, 10)->create([
+        entity(\App\Entities\Bug::class, $times-1)->create([
                 'users' => $users
             ]);
     }

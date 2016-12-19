@@ -9,12 +9,12 @@ class ProductTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run($times = 10)
     {
     	entity(\App\Entities\Product::class, 1)->create([
     		'name' => 'The Book of Time'
     		]);
     	
-        entity(\App\Entities\Product::class, 10)->create();
+        entity(\App\Entities\Product::class, $times-1)->create();
     }
 }

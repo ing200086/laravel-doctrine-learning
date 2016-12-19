@@ -19,9 +19,9 @@ class DatabaseSeeder extends Seeder
     {
         $this->fullTruncate($this->getDBDriver());
         
-        $this->call(UserTableSeeder::class);
-        $this->call(ProductTableSeeder::class);
-        $this->call(BugTableSeeder::class);
+        $this->resolve(UserTableSeeder::class)->run();
+        $this->resolve(ProductTableSeeder::class)->run();
+        $this->resolve(BugTableSeeder::class)->run();
     }
 
     protected function fullTruncate($dbDriver)
