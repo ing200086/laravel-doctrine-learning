@@ -6,30 +6,22 @@ use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
 use Doctrine\ORM\Mapping as Doctrine;
 
 /**
- * @Doctrine\Entity
- * @Doctrine\Table(name="users")
  */
 class User 
 {
 	/**
-	 * @Doctrine\Id
-	 * @Doctrine\Column(type="integer", name="id")
-	 * @Doctrine\GeneratedValue(strategy="IDENTITY")
 	 */
 	protected $id = null;
 
 	/**
-	 * @Doctrine\Column(type="string")
 	 */
 	protected $name = null;
 
 	/**
-	 * @Doctrine\OneToMany(targetEntity="\App\Entities\Bug", mappedBy="engineer")
 	 */
 	protected $assignedBugs = null;
 
 	/**
-	 * @Doctrine\OneToMany(targetEntity="\App\Entities\Bug", mappedBy="reporter")
 	 */
 	protected $reportedBugs = null;
 

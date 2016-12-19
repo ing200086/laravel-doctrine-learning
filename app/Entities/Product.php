@@ -6,21 +6,11 @@ use Doctrine\ORM\Mapping as Doctrine;
 
 /**
 * Product class
-* @Doctrine\Entity
-* @Doctrine\Table(name="products")
 */
 class Product
 {
-	/**
-	 * @Doctrine\Id
-	 * @Doctrine\Column(type="integer")
-	 * @Doctrine\GeneratedValue
-	 */
 	protected $id;
 
-	/**
-	 * @Doctrine\Column(type="string")
-	 */
 	protected $name;
 
 	public function getId()
