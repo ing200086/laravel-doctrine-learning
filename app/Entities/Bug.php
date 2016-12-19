@@ -40,8 +40,9 @@ class Bug
 	 */
 	protected $products = null;
 
-	public function __construct()
+	public function __construct($description)
 	{
+		$this->setDescription($description);
 		$this->products = new ArrayCollection();
 	}
 

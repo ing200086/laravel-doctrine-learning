@@ -46,8 +46,7 @@ class UserTest extends TestCase
 
     protected function seedBug($description, $reporter, $engineer)
     {
-        $bug = new \App\Entities\Bug();
-        $bug->setDescription($description);
+        $bug = new \App\Entities\Bug($description);
         $bug->setReporter($reporter)->setEngineer($engineer);
 
         $this->entityManager->persist($bug);
