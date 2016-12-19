@@ -24,4 +24,23 @@ abstract class TestCase extends \Illuminate\Foundation\Testing\TestCase
 
         return $app;
     }
+
+    protected function getDBDriver()
+    {
+        $currentDB = config('database.default');
+        $currentConnection = config('database.connections.' . $currentDB);
+        return $currentConnection['driver'];
+    }
+
+    protected function buildSchema()
+    {
+        if ($this->getDBDriver() == "sqlite") {
+            \Artisan::call('doctrine:schema:create');
+        }
+    }
+
+    protected function seedDB()
+    {
+        \Artisan::call('db:seed');
+    }
 }

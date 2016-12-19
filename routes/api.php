@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
+Route::group(['namespace' => 'Api\v1', 'prefix' => 'v1', 'as' => 'api.v1.'], function() {
+	// Route::resource('warehouses', 'WarehouseController');
+	// Route::resource('products', 'ProductController');
+	Route::get('user', "UserController@index");
+});

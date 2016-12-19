@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Integration\Doctrine;
+namespace Tests\Acceptance\Api;
 
 /**
 * This class was made to extend the TestCase and proved a structure to ensure
@@ -14,7 +14,6 @@ class TestCase extends \Tests\TestCase
     	parent::setUp();
 
         $this->buildSchema();
-        
-        $this->entityManager = app('Doctrine\ORM\EntityManagerInterface');
+        $this->seedDB();
     }
 }
