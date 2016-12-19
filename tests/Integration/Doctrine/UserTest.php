@@ -11,13 +11,16 @@ class UserTest extends TestCase
      */
     public function set_and_retrieve_object()
     {
-        $this->seedDb();
+        $user = $this->seedUser("Dan");
+        $bug = $this->seedBug("Damn Ants", $user, $user);
 
         $dbUser = $this->entityManager->find(User::class, 1);
 
-        $this->assertEquals("George Orwell", $dbUser->getName());
+        $this->assertEquals("Dan", $dbUser->getName());
 
         $dbBug = $dbUser->getBugs();
+
+        $this->assertEquals('Damn Ants', $dbBug[0]->getDescription());
     }
 
     /**
@@ -25,27 +28,29 @@ class UserTest extends TestCase
      */
     public function no_entity_manager_testing_of_object()
     {
-        $this->seed_the_dan();
+        $user = $this->seedUser("Dan");
+        $bug = $this->seedBug("Damn Ants", $user, $user);
 
         $dbBugs = $this->entityManager->find(User::class, 1)->getBugs();
     }
 
-    protected function seed_the_dan()
+    protected function seedUser($name)
     {
-        $user = new User();
-        $user->setName("Dan");
-
-        $bug = new \App\Entities\Bug();
-        $bug->setDescription("Damn Ants.");
-        $bug->setReporter($user)->setEngineer($user);
-
+        $user = new User($name);
 
         $this->entityManager->persist($user);
-        $this->entityManager->persist($bug);
-
         $this->entityManager->flush();
+
+        return $user;
     }
 
+    protected function seedBug($description, $reporter, $engineer)
+    {
+        $bug = new \App\Entities\Bug();
+        $bug->setDescription($description);
+        $bug->setReporter($reporter)->setEngineer($engineer);
 
-
+        $this->entityManager->persist($bug);
+        $this->entityManager->flush();
+    }
 }

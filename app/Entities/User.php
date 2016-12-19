@@ -25,8 +25,9 @@ class User
 	 */
 	protected $reportedBugs = null;
 
-	public function __construct()
+	public function __construct($name)
 	{
+		$this->setName($name);
 		$this->reportedBugs = new ArrayCollection();
 		$this->assignedBugs = new ArrayCollection();
 	}

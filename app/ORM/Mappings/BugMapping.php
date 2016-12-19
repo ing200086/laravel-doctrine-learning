@@ -1,20 +1,23 @@
 <?php
 
-namespace App\Mappings;
+namespace App\ORM\Mappings;
 
 use LaravelDoctrine\Fluent\EntityMapping;
 use LaravelDoctrine\Fluent\Fluent;
+use LaravelDoctrine\Fluent\Builders\GeneratedValue;
+
 
 use App\Entities\User;
 use App\Entities\Bug;
 use App\Entities\Product;
+
+use App\ORM\Generators\BugId;
 
 /**
 * 
 */
 class BugMapping extends EntityMapping
 {
-	
 	public function mapFor()
 	{
 		return Bug::class;
@@ -22,7 +25,9 @@ class BugMapping extends EntityMapping
 
 	public function map(Fluent $builder)
 	{
-		$builder->increments('id');
+		$builder->integer('id')->primary()->generatedValue(function(GeneratedValue $gen) {
+			$gen->custom(BugId::class);
+		});
 
 		$builder->string('description');
 

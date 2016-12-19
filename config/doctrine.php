@@ -25,9 +25,9 @@ return [
             'dev'           => env('APP_DEBUG'),
             'meta'          => env('DOCTRINE_METADATA', 'fluent'),
             'mappings'      => [
-                App\Mappings\UserMapping::class,
-                App\Mappings\BugMapping::class,
-                App\Mappings\ProductMapping::class,
+                App\ORM\Mappings\UserMapping::class,
+                App\ORM\Mappings\BugMapping::class,
+                App\ORM\Mappings\ProductMapping::class,
             ],
             'connection'    => env('DB_CONNECTION', 'mysql'),
             'namespaces'    => [

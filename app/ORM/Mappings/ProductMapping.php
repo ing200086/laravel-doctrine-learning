@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mappings;
+namespace App\ORM\Mappings;
 
 use LaravelDoctrine\Fluent\EntityMapping;
 use LaravelDoctrine\Fluent\Fluent;
