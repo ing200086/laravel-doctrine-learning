@@ -2,12 +2,12 @@
 
 namespace App\Entities;
 
-use Doctrine\ORM\Mapping as Doctrine;
+use App\EntityContracts as Contract;
 
 /**
 * Product class
 */
-class Product
+class Product implements Contract\ProductInterface
 {
 	protected $id;
 

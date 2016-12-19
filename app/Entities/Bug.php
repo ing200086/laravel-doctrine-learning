@@ -3,12 +3,12 @@
 namespace App\Entities;
 
 use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
-use Doctrine\ORM\Mapping as Doctrine;
+use App\EntityContracts as Contract;
 
 /**
 * Bug class to describe the issues with a product or service and disposition
 */
-class Bug
+class Bug implements Contract\BugInterface
 {
 	/**
 	 * Bug Identifier in the database
@@ -85,7 +85,7 @@ class Bug
 		return $this;
 	}
 
-	public function setEngineer(User $engineer)
+	public function setEngineer(Contract\UserInterface $engineer)
 	{
 		$engineer->assignedToBug($this);
 		$this->engineer = $engineer;
@@ -93,7 +93,7 @@ class Bug
 		return $this;
 	}
 
-	public function setReporter(User $reporter)
+	public function setReporter(Contract\UserInterface $reporter)
 	{
 		$reporter->reporterOfBug($this);
 		$this->reporter = $reporter;

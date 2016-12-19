@@ -3,11 +3,12 @@
 namespace App\Entities;
 
 use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
-use Doctrine\ORM\Mapping as Doctrine;
+
+use \App\EntityContracts\BugInterface;
 
 /**
  */
-class User 
+class User implements \App\EntityContracts\UserInterface
 {
 	/**
 	 */
@@ -47,12 +48,12 @@ class User
 		$this->name = $name;
 	}
 
-	public function reporterOfBug(Bug $bug)
+	public function reporterOfBug(BugInterface $bug)
 	{
 		$this->reportedBugs[] = $bug;
 	}
 
-	public function assignedToBug(Bug $bug)
+	public function assignedToBug(BugInterface $bug)
 	{
 		$this->assignedBugs[] = $bug;
 	}
