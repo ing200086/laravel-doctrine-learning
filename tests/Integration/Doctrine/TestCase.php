@@ -16,6 +16,7 @@ class TestCase extends \Tests\TestCase
         if (config("database.default") == "mem_sqlite") {
             \Artisan::call('doctrine:schema:create');
         }
+        
         $this->entityManager = app('Doctrine\ORM\EntityManagerInterface');
     }
 
