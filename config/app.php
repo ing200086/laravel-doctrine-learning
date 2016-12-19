@@ -167,6 +167,7 @@ return [
          * Package Service Providers...
          */
         LaravelDoctrine\ORM\DoctrineServiceProvider::class,
+        Spatie\Fractal\FractalServiceProvider::class,
 
         //
 
@@ -230,6 +231,8 @@ return [
         'EntityManager' => LaravelDoctrine\ORM\Facades\EntityManager::class,
         'Registry'      => LaravelDoctrine\ORM\Facades\Registry::class,
         'Doctrine'      => LaravelDoctrine\ORM\Facades\Doctrine::class,
+
+        'Fractal' => Spatie\Fractal\FractalFacade::class,
 
     ],
 
