@@ -11,11 +11,11 @@ class ProductTest extends TestCase
      */
     public function set_and_retrieve_object()
     {
-        // $this->seedDb();
+        $this->seedDb();
 
-        // $dbProduct = $this->entityManager->find(Product::class, 1);
+        $dbProduct = $this->entityManager->getRepository(Product::class)->find(1);
 
-        // $this->assertEquals("The Book of Time", $dbProduct->getName());
+        $this->assertEquals("The Book of Time", $dbProduct->getName());
     }
 
     /**
@@ -23,13 +23,10 @@ class ProductTest extends TestCase
      */
     public function set_and_change_object_in_db()
     {
-        // $name = "Widget";
-        // $this->seedDb();
+        $this->seedDb();
 
-        // $dbProduct = $this->entityManager->find(Product::class, 1);
+        $products = $this->entityManager->getRepository(Product::class)->customFindAll();
 
-        // $dbProduct->setName($name);
-
-        // $this->assertEquals($name, $dbProduct->getName());
+        $this->assertNotEmpty($products);
     }
 }

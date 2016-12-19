@@ -22,6 +22,6 @@ class TestCase extends \Tests\TestCase
 
     protected function seedDB()
     {
-    	// \Artisan::call('db:seed');
+    	\Artisan::call('db:seed');
     }
 }
