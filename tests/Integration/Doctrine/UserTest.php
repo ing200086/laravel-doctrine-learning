@@ -1,8 +1,10 @@
 <?php
 
+namespace Tests\Integration\Doctrine;
+
 use App\Entities\User;
 
-class UserTest extends DBTestCase
+class UserTest extends TestCase
 {
     /**
      * @test

@@ -1,8 +1,10 @@
 <?php
 
+namespace Tests\Integration\Doctrine;
+
 use App\Entities\Product;
 
-class ProductTest extends DBTestCase
+class ProductTest extends TestCase
 {
     /**
      * @test

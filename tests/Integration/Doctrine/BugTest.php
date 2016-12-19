@@ -1,8 +1,10 @@
 <?php
 
+namespace Tests\Integration\Doctrine;
+
 use App\Entities\Bug;
 
-class BugTest extends DBTestCase
+class BugTest extends TestCase
 {
     /**
      * @test
