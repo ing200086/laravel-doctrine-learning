@@ -28,7 +28,7 @@ class UserMapping extends EntityMapping
 		$builder->hasMany(Bug::class, 'assignedBugs')
 					->mappedBy('engineer');
 		$builder->hasMany(Bug::class, 'reportedBugs')
-					->mappedBy('reporter');
+					->mappedBy('reporter')->fetchEager();
 	}
 
 

@@ -213,7 +213,7 @@ class User extends \App\Entities\User implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function reporterOfBug(\App\Entities\Bug $bug)
+    public function reporterOfBug(\App\EntityContracts\BugInterface $bug)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'reporterOfBug', [$bug]);
@@ -224,7 +224,7 @@ class User extends \App\Entities\User implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function assignedToBug(\App\Entities\Bug $bug)
+    public function assignedToBug(\App\EntityContracts\BugInterface $bug)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'assignedToBug', [$bug]);

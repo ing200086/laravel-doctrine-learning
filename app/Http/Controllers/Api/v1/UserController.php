@@ -27,6 +27,8 @@ class UserController extends \App\Http\Controllers\Controller
     {
         $users = $this->repository->findAll();
 
+        // dd($users);
+
         return response()->json(
             fractal()->collection($users)
             	->transformWith($this->transformer)

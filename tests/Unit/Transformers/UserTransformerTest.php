@@ -19,6 +19,9 @@ class UserTransformerTest extends \Tests\TestCase
 									->transformWith(new UserTransformer())
 									->toArray();
 
-		$this->assertEquals(['name' => 'James Bond'], $transformed['data']);
+		$this->assertEquals([
+				'name' 	=> 'James Bond',
+				'bugs' => []
+			], $transformed['data']);
 	}
 }

@@ -257,7 +257,7 @@ class Bug extends \App\Entities\Bug implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setEngineer(\App\Entities\User $engineer)
+    public function setEngineer(\App\EntityContracts\UserInterface $engineer)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEngineer', [$engineer]);
@@ -268,7 +268,7 @@ class Bug extends \App\Entities\Bug implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setReporter(\App\Entities\User $reporter)
+    public function setReporter(\App\EntityContracts\UserInterface $reporter)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setReporter', [$reporter]);
