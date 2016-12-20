@@ -24,7 +24,10 @@ class UsersTest extends TestCase
 
     	$this->seeJsonStructure([
 					'*' => [
-						'name'
+						'name',
+                        'bugs' => [
+                            'id', 'title'
+                        ]
 					]
     			], $users);
     }
