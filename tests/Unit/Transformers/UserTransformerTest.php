@@ -11,7 +11,7 @@ use App\Entities\User;
 class UserTransformerTest extends \Tests\TestCase
 {
 	/** @test */
-	public function it_transforms_single_bug()
+	public function it_transforms_single_user()
 	{
 		$user = new User('James Bond');
 
@@ -21,7 +21,9 @@ class UserTransformerTest extends \Tests\TestCase
 
 		$this->assertEquals([
 				'name' 	=> 'James Bond',
-				'bugs' => []
+				'bugs' => [
+					'data' => []
+				]
 			], $transformed['data']);
 	}
 }

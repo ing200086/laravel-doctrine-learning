@@ -28,6 +28,7 @@ return [
                 App\ORM\Mappings\UserMapping::class,
                 App\ORM\Mappings\BugMapping::class,
                 App\ORM\Mappings\ProductMapping::class,
+                App\ORM\Mappings\Embeddables\EmailMapping::class,
             ],
             'connection'    => env('DB_CONNECTION', 'mysql'),
             'namespaces'    => [

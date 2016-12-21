@@ -22,7 +22,8 @@ $factory->define(\App\Entities\Product::class, function (Faker\Generator $faker,
 
 $factory->define(\App\Entities\User::class, function (Faker\Generator $faker, array $attributes) {
 	return [
-		'name' => $faker->name
+		'name' => $faker->name,
+		'email' => new \App\Entities\Embeddables\Email($faker->email)
 	];
 });
 

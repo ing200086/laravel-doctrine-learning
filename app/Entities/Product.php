@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
 use App\EntityContracts as Contract;
 
 /**

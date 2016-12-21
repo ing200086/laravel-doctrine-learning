@@ -6,7 +6,6 @@ use LaravelDoctrine\Fluent\EntityMapping;
 use LaravelDoctrine\Fluent\Fluent;
 use LaravelDoctrine\Fluent\Builders\GeneratedValue;
 
-
 use App\Entities\User;
 use App\Entities\Bug;
 use App\Entities\Product;

@@ -14,6 +14,6 @@ class TestCase extends \Tests\TestCase
     	parent::setUp();
 
         $this->buildSchema();
-        $this->seedDB();
+        
     }
 }

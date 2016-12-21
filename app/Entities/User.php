@@ -4,11 +4,11 @@ namespace App\Entities;
 
 use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
 
-use \App\EntityContracts\BugInterface;
+use App\EntityContracts as Contract;
 
 /**
  */
-class User implements \App\EntityContracts\UserInterface
+class User implements Contract\UserInterface
 {
 	/**
 	 */
@@ -25,6 +25,10 @@ class User implements \App\EntityContracts\UserInterface
 	/**
 	 */
 	protected $reportedBugs = null;
+
+	/**
+	 */
+	protected $email;
 
 	public function __construct($name)
 	{
@@ -48,12 +52,12 @@ class User implements \App\EntityContracts\UserInterface
 		$this->name = $name;
 	}
 
-	public function reporterOfBug(BugInterface $bug)
+	public function reporterOfBug(Contract\BugInterface $bug)
 	{
 		$this->reportedBugs[] = $bug;
 	}
 
-	public function assignedToBug(BugInterface $bug)
+	public function assignedToBug(Contract\BugInterface $bug)
 	{
 		$this->assignedBugs[] = $bug;
 	}

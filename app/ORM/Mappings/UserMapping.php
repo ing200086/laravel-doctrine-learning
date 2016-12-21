@@ -8,6 +8,9 @@ use LaravelDoctrine\Fluent\Fluent;
 use App\Entities\User;
 use App\Entities\Bug;
 
+use App\Entities as Entity;
+use App\Entities\Embeddables as Embed;
+
 /**
 * 
 */
@@ -29,6 +32,8 @@ class UserMapping extends EntityMapping
 					->mappedBy('engineer');
 		$builder->hasMany(Bug::class, 'reportedBugs')
 					->mappedBy('reporter')->fetchEager();
+
+		$builder->embed(Embed\Email::class);
 	}
 
 
